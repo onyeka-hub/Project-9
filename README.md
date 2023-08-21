@@ -98,11 +98,19 @@ In configuration of your Jenkins freestyle project choose Git repository, provid
 
 ## Blocker
 
-I encountered this error when suppling the github credentials
+1. I encountered this error when suppling the github credentials
 
 'HTTP ERROR 403 No valid crumb was included in the request'
 
 To resolve it, I have to check the box for the option **Enable proxy compactibility** which is under **Configure Global Security** under **Manage Jenkins** on the jenkins dashboard.
+
+2. Another error
+
+![crumb issuer error](./images/crumb-issuer-blocker.PNG)
+
+To resolve it, I have to check the box for the option **Enable proxy compactibility** which is under **CSRF Protection** under **Security** under **Manage Jenkins** on the jenkins dashboard.
+##########################################################################################
+
 
 Save the configuration and let us try to run the build. For now we can only do it manually.
 
