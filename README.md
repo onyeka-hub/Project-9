@@ -26,26 +26,40 @@ Here is how your updated architecture will look like upon completion of this pro
 
 1. Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and name it "Jenkins"
 
-2. Install JDK (since Jenkins is a Java-based application)
+The below sript can be used to install jenkins from https://www.jenkins.io/download/
 
 ```
-        sudo apt update
-        sudo apt install default-jdk-headless
-```
+#!/bin/bash
 
-3. Install Jenkins
+# jenkins installation script
 
-```
-        wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-        sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
-            /etc/apt/sources.list.d/jenkins.list'
-        sudo apt update
-        sudo apt-get install jenkins
+# update the server repository
+sudo apt update -y
+
+# This is the Debian package repository of Jenkins to automate installation and upgrade. To use this repository, first add the key to your system:
+
+
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+    /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+# Then add a Jenkins apt repository entry:
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+# Update your local package index, then finally install Jenkins:
+
+sudo apt-get update -y
+sudo apt-get install fontconfig openjdk-11-jre -y
+sudo apt-get install jenkins -y
+
+echo "Jenkins installation successfull"
 ```
 
 Make sure Jenkins is up and running
 
-        'sudo systemctl status jenkins'
+`sudo systemctl status jenkins`
 
 ![jenkins up and running](./images/jenkins-running.PNG)
 
@@ -125,9 +139,9 @@ But this build does not produce anything and it runs only when we trigger it man
 
 3. Click "Configure" your job/project and add these two configurations
 
-- Configure triggering the job from GitHub webhook: check the box for **GitHub hook trigger for GITScm polling**
+- Configure triggering the job from GitHub webhook: Under **Build Triggers** check the box for **GitHub hook trigger for GITScm polling**
 
-- Configure "Post-build Actions" to archive all the files – files resulted from a build are called "artifacts": Click the button for **Post-build Action**, select **Archive the artifacts** and in the box for **files to be archived** put **(**)** to archive all the files 
+- Configure "Post-build Actions" to archive all the files – files resulted from a build are called "artifacts": Click the button for **Post-build Action**, select **Archive the artifacts** and in the box for **files to be archived** put (**) to archive all the files 
 
 Now, go ahead and make some change in any file in your GitHub repository (e.g. README.MD file) and push the changes to the master branch.
 
