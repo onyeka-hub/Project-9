@@ -108,7 +108,7 @@ In this part, you will learn how to configure a simple Jenkins job/project. This
 
 To connect your GitHub repository, you will need to provide its URL, you can copy from the repository itself (in this case Tooling repo)
 
-In configuration of your Jenkins freestyle project choose Git repository, provide there the link to your Tooling GitHub repository and credentials (user/password) so Jenkins could access files in the repository. Remember to select the credentials you enabled
+In configuration of your Jenkins freestyle project choose Git repository, provide there the link to your Tooling GitHub repository and credentials (user/password ie github username and password) so Jenkins could access files in the repository. Remember to select the credentials you enabled
 
 ## Blocker
 
@@ -143,7 +143,7 @@ But this build does not produce anything and it runs only when we trigger it man
 
 - Configure "Post-build Actions" to archive all the files – files resulted from a build are called "artifacts": Click the button for **Post-build Action**, select **Archive the artifacts** and in the box for **files to be archived** put (**) to archive all the files 
 
-Now, go ahead and make some change in any file in your GitHub repository (e.g. README.MD file) and push the changes to the master branch.
+Now, go ahead and make some change in any file in your GitHub repository (e.g. README.MD file) and push the changes to the main branch.
 
 ![making changes in the readme file](./images/readme-edited.PNG)
 
