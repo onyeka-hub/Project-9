@@ -25,6 +25,11 @@ Here is how your updated architecture will look like upon completion of this pro
 ### Step 1 – Install Jenkins server
 
 1. Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and name it "Jenkins"
+```
+owner - 099720109477
+ami id - ami-0608dbf22649c0159
+ami name - ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20240426
+```
 
 The below sript can be used to install jenkins from https://www.jenkins.io/download/
 
